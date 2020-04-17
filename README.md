@@ -7,6 +7,27 @@ See the JavaDocs here: https://mrrhetorical.github.io/SoundScapeAPI/
 API Usage
 ------
 
+### Depend on this Plugin with Maven
+
+#### Maven Repository
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+
+### Maven Dependency
+```xml
+	<dependency>
+	    <groupId>com.github.mrrhetorical</groupId>
+	    <artifactId>SoundScapeAPI</artifactId>
+	    <version>1.0.0</version>
+	</dependency>
+```
+
 Import the main API class:
 ```java
  import com.rhetorical.soundscape.SoundScapeAPI;
