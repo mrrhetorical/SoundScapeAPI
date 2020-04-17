@@ -45,8 +45,8 @@ public class SoundScapeAPI {
 	 * @param pitch The pitch of the sound
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * */
-	public static void playSound(Player origin, Sound sound, float pitch, float maxDistance) {
-		playSound(origin.getLocation(), sound, pitch, maxDistance, true);
+	public static void playSound(Player origin, Sound sound, float baseVolume, float pitch, float maxDistance) {
+		playSound(origin.getLocation(), sound, baseVolume, pitch, maxDistance, true);
 	}
 
 	/**
@@ -58,8 +58,8 @@ public class SoundScapeAPI {
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * @param simDistance Should distance be simulated
 	 * */
-	public static void playSound(Player origin, Sound sound, float pitch, float maxDistance, boolean simDistance) {
-		playSound(origin.getLocation(), sound, pitch, maxDistance, simDistance);
+	public static void playSound(Player origin, Sound sound, float baseVolume, float pitch, float maxDistance, boolean simDistance) {
+		playSound(origin.getLocation(), sound, baseVolume, pitch, maxDistance, simDistance);
 	}
 
 	/**
@@ -70,8 +70,8 @@ public class SoundScapeAPI {
 	 * @param pitch The pitch of the sound
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * */
-	public static void playSound(Location origin, Sound sound, float pitch, float maxDistance) {
-		playSound(origin, sound, pitch, maxDistance, true);
+	public static void playSound(Location origin, Sound sound, float baseVolume, float pitch, float maxDistance) {
+		playSound(origin, sound, baseVolume, pitch, maxDistance, true);
 	}
 
 
@@ -84,24 +84,36 @@ public class SoundScapeAPI {
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * @param simDistance Should distance be simulated
 	 * */
-	public static void playSound(Location origin, Sound sound, float pitch, float maxDistance, boolean simDistance) {
+	public static void playSound(Location origin, Sound sound, float baseVolume, float pitch, float maxDistance, boolean simDistance) {
 		List<Player> nearby = getNearbyPlayers(origin, maxDistance * maxDistance);
 
 		float distance, per, volume;
 		Location direction;
 		for (Player p : nearby) {
+			if (p.getLocation().equals(origin)) {
+				p.playSound(p.getLocation(), sound, baseVolume, pitch);
+				return;
+			}
+
 			distance = (float) origin.distance(p.getLocation());
 			per = (distance / maxDistance);
 
 			//logarithmic degradation after 13% maximum distance away
-			if (per <= 0.13) {
-				volume = 1 - per;
+			if (SoundScape.getInstance().isLogarithmic()) {
+				if (per <= 0.13) {
+					volume = 1 - per;
+				} else {
+					volume = (float) -Math.log(per);
+				}
 			} else {
-				volume = (float) -Math.log(per);
+				volume = (float) (1 - Math.sqrt(per));
 			}
 
-			volume = volume > 1f ? 1f : volume < 0f ? 0 : volume;
-			direction = normalize(origin.subtract(p.getLocation()));
+			volume = volume > 1f ? 1f : volume < 0f ? 0f : volume;
+
+			volume *= baseVolume;
+
+			direction = normalize(origin.clone().subtract(p.getLocation()));
 
 			//Queue the sound for sound simulation
 			if (SoundScape.getInstance().isSimulateDistance() && simDistance)
@@ -111,7 +123,7 @@ public class SoundScapeAPI {
 
 			if (SoundScape.getInstance().isDebug()) {
 				Bukkit.getServer().getLogger().info("Sound Generated");
-				Bukkit.getServer().getLogger().info(String.format("From: %s:(%s, %s, %s))", origin.getWorld()!= null ? origin.getWorld().getName() : "null", origin.getX(), origin.getY(), origin.getZ()));
+				Bukkit.getServer().getLogger().info(String.format("From: %s:(%s, %s, %s))", origin.getWorld() != null ? origin.getWorld().getName() : "null", origin.getX(), origin.getY(), origin.getZ()));
 				Bukkit.getServer().getLogger().info("Target: " + p.getName());
 				Bukkit.getServer().getLogger().info("Sound: " + sound.toString());
 				Bukkit.getServer().getLogger().info("Volume: " + volume);
@@ -143,7 +155,7 @@ public class SoundScapeAPI {
 			}
 		};
 
-		br.runTaskLaterAsynchronously(SoundScape.getInstance(), 20L * Math.round(distance / SPEED_OF_SOUND));
+		br.runTaskLaterAsynchronously(SoundScape.getInstance(), (long) Math.round(20f * (distance / SPEED_OF_SOUND)));
 	}
 
 }
