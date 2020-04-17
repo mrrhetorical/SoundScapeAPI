@@ -92,7 +92,7 @@ public class SoundScapeAPI {
 		for (Player p : nearby) {
 			if (p.getLocation().equals(origin)) {
 				p.playSound(p.getLocation(), sound, baseVolume, pitch);
-				return;
+				continue;
 			}
 
 			distance = (float) origin.distance(p.getLocation());
