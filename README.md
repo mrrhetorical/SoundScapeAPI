@@ -8,21 +8,21 @@ See the JavaDocs here: https://mrrhetorical.github.io/SoundScapeAPI/
 
 #### Maven Repository
 ```xml
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
 ```
 
 #### Maven Dependency
 ```xml
-	<dependency>
-	    <groupId>com.github.mrrhetorical</groupId>
-	    <artifactId>SoundScapeAPI</artifactId>
-	    <version>1.0.0</version>
-	</dependency>
+<dependency>
+	<groupId>com.github.mrrhetorical</groupId>
+	<artifactId>SoundScapeAPI</artifactId>
+	<version>1.0.0</version>
+</dependency>
 ```
 
 How to use the API
