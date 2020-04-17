@@ -1,0 +1,9 @@
+# Debug: Turn this on for debug info in the console about sounds
+debug: true
+
+# Simulate distance: Whether or not the plugin should attempt to simulate sound travelling over distance.
+# This only affects sounds not using the API directly to do this.
+simulateDistance: true
+
+# Use logarithmic sound drop off over exponential sound drop off
+logarithmic: false
