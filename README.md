@@ -23,7 +23,7 @@ See the JavaDocs here: https://mrrhetorical.github.io/SoundScapeAPI/
 <dependency>
 	<groupId>com.github.mrrhetorical</groupId>
 	<artifactId>SoundScapeAPI</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 </dependency>
 ```
 
