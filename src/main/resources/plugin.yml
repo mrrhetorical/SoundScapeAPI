@@ -1,0 +1,9 @@
+name: SoundScapeAPI
+version: 1.0.0
+api-version: 1.13
+author: MrRhetorical
+main: com.rhetorical.soundscape.SoundScape
+commands:
+  ss:
+    description: Base command. Used for testing.
+    usage: /<command>
