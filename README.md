@@ -4,9 +4,6 @@ Sound scape API for simulating loud, long distance sounds in Minecraft.
 
 See the JavaDocs here: https://mrrhetorical.github.io/SoundScapeAPI/
 
-API Usage
-------
-
 ### Depend on this Plugin with Maven
 
 #### Maven Repository
@@ -19,7 +16,7 @@ API Usage
 	</repositories>
 ```
 
-### Maven Dependency
+#### Maven Dependency
 ```xml
 	<dependency>
 	    <groupId>com.github.mrrhetorical</groupId>
@@ -27,6 +24,9 @@ API Usage
 	    <version>1.0.0</version>
 	</dependency>
 ```
+
+How to use the API
+------
 
 Import the main API class:
 ```java
