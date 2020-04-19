@@ -45,7 +45,7 @@ public class SoundScapeAPI {
 	 * @param pitch The pitch of the sound
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * */
-	public static void playSound(Player origin, Sound sound, float baseVolume, float pitch, float maxDistance) {
+	public static void playSound(Player origin, String sound, float baseVolume, float pitch, float maxDistance) {
 		playSound(origin.getLocation(), sound, baseVolume, pitch, maxDistance, true);
 	}
 
@@ -58,7 +58,7 @@ public class SoundScapeAPI {
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * @param simDistance Should distance be simulated
 	 * */
-	public static void playSound(Player origin, Sound sound, float baseVolume, float pitch, float maxDistance, boolean simDistance) {
+	public static void playSound(Player origin, String sound, float baseVolume, float pitch, float maxDistance, boolean simDistance) {
 		playSound(origin.getLocation(), sound, baseVolume, pitch, maxDistance, simDistance);
 	}
 
@@ -70,7 +70,7 @@ public class SoundScapeAPI {
 	 * @param pitch The pitch of the sound
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * */
-	public static void playSound(Location origin, Sound sound, float baseVolume, float pitch, float maxDistance) {
+	public static void playSound(Location origin, String sound, float baseVolume, float pitch, float maxDistance) {
 		playSound(origin, sound, baseVolume, pitch, maxDistance, true);
 	}
 
@@ -84,7 +84,7 @@ public class SoundScapeAPI {
 	 * @param maxDistance The maximum distance away the sound will be played to other players
 	 * @param simDistance Should distance be simulated
 	 * */
-	public static void playSound(Location origin, Sound sound, float baseVolume, float pitch, float maxDistance, boolean simDistance) {
+	public static void playSound(Location origin, String sound, float baseVolume, float pitch, float maxDistance, boolean simDistance) {
 		List<Player> nearby = getNearbyPlayers(origin, maxDistance * maxDistance);
 
 		float distance, per, volume;
@@ -134,8 +134,6 @@ public class SoundScapeAPI {
 		}
 	}
 
-
-
 	/**
 	 * Queues the sound to be played with the given distance away from the origin and the normal vector pointing
 	 * towards the source.
@@ -147,7 +145,7 @@ public class SoundScapeAPI {
 	 * @param pitch The pitch of the sound
 	 * @param distance The distance the sound has to travel
 	 * */
-	public static void queueSound(Player p, Sound sound, Location normal, float volume, float pitch, float distance) {
+	public static void queueSound(Player p, String sound, Location normal, float volume, float pitch, float distance) {
 		BukkitRunnable br = new BukkitRunnable() {
 			@Override
 			public void run() {
