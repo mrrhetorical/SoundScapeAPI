@@ -23,7 +23,7 @@ See the JavaDocs here: https://mrrhetorical.github.io/SoundScapeAPI/
 <dependency>
 	<groupId>com.github.mrrhetorical</groupId>
 	<artifactId>SoundScapeAPI</artifactId>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 </dependency>
 ```
 
@@ -38,17 +38,17 @@ Import the main API class:
 Play a sound originating from a player using the following:
 ```java
 
-SoundScapeAPI.playSound((Player) player, (Sound) sound, (float) volume, (float) pitch, (float) distance);
+SoundScapeAPI.playSound((Player) player, (String) sound, (float) volume, (float) pitch, (float) distance);
 ```
 
 Play a sound originating from a location using the following:
 ```java
 
-SoundScapeAPI.playSound((Location) location, (Sound) sound, (float) volume, (float) pitch, (float) distance);
+SoundScapeAPI.playSound((Location) location, (String) sound, (float) volume, (float) pitch, (float) distance);
 ```
 
 Send a sound to a specific player with the given distance and normal vector (as a location) pointing towards the source:
 ```java
 
-SoundScapeAPI.queueSound((Player) player, (Sound) sound, (Location) normal, (float) volume, (float) pitch, (float) distance);
+SoundScapeAPI.queueSound((Player) player, (String) sound, (Location) normal, (float) volume, (float) pitch, (float) distance);
 ```
